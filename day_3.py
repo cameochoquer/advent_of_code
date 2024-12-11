@@ -2,17 +2,12 @@ import re
 
 data = [line.strip() for line in open("input3.txt", "r").readlines()]
 
-print(type(data))
-newstring = ""
-for x in data:
-    newstring += "" + x
-
 # print(newstring)
 res = 0
-don = re.findall(r"don\'t\(\)", newstring)
-dos = re.findall(r"do\(\)", newstring)
+# don = re.findall(r"don\'t\(\)", newstring)
+# dos = re.findall(r"do\(\)", newstring)
 # muls = re.findall(r"mul\(\d+,\d+\)", newstring)
-new = re.findall(r"mul\(\d+,\d+\)|do\(\)|don\'t\(\)", newstring)
+new = re.findall(r"mul\(\d+,\d+\)|do\(\)|don\'t\(\)", "".join(data))
 print(new)
 
 # for mul in muls:
