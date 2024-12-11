@@ -54,21 +54,21 @@ def check_new_report(report):
 count = 0
 results = []
 unsafe = []
+
 for string in data:
     string_list = string.split(" ")
     number_list = [int(num) for num in string_list]
     safety_dict = check_report(number_list)
-    for key, value in safety_dict.items():
-        if key == "unsafe":
-            unsafe.append(value)
-            for i in range(len(value)):
-                test_list = value[:i] + value[i + 1 :]
-                result = check_new_report(test_list)
-                if result is not None:
-                    count += 1
-            print(count)
-    if result is not None:
-        results.append(result)
+    if "unsafe" in safety_dict:
+        for i in range(len(number_list)):
+            test_list = number_list[:i] + number_list[i + 1 :]
+            result = check_new_report(test_list)
+            if result is not None:
+                count += 1
+                break
+
+print(count + 411)
+print(len(results))
 # print(len(unsafe) + 411)
 
 
@@ -87,5 +87,6 @@ for string in data:
 #     print("unsafe")
 # else:
 #     count += 1
+
 
 # print(count)
