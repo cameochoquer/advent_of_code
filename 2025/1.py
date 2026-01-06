@@ -10,18 +10,23 @@ def split_string(numberstring: str) -> int:
     return number
 
 
-def add_numbers(current: int, addition: int) -> int:
+def add_numbers(current: int, addition: int) -> tuple[int, int]:
+    zero_count = 0
     if addition > 0:
         for i in range(addition):
             current += 1
             if current > 99:
                 current = 0
+            if current == 0:
+                zero_count += 1
     else:
         for i in range(abs(addition)):
             current -= 1
             if current < 0:
                 current = 99
-    return current
+            if current == 0:
+                zero_count += 1
+    return current, zero_count
 
 
 if __name__ == "__main__":
@@ -31,9 +36,8 @@ if __name__ == "__main__":
     for move in result:
         new_moves = []
         for next_move in moves:
-            position = add_numbers(next_move, move)
-            if position == 0:
-                zero_count += 1
+            position, zero_counts = add_numbers(next_move, move)
+            zero_count += zero_counts
             new_moves.append(position)
         moves = new_moves
 
